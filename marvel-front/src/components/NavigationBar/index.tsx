@@ -8,9 +8,9 @@ export const NavigationBar = () => {
 
       <S.Nav>
         <a href="#">Início</a>
-        <a href="">Informação</a>
-        <a href="">Heróis</a>
-        <a href="">Painel</a>
+        <a href="#">Informação</a>
+        <a href="#">Heróis</a>
+        <a href="#">Painel</a>
       </S.Nav>
     </S.Header>
   );

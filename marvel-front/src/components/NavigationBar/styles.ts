@@ -1,9 +1,13 @@
 import { styled } from "styled-components";
+import { colors } from "../../utils/colors";
 
 export const Header = styled.header`
     height: 5rem;
     width: 100%;
     padding: 0 2rem;
+    position: fixed;
+    z-index: 1;
+    background-color: ${colors.primary[0.1]};
 
     display: flex;
     align-items: center;
@@ -16,7 +20,6 @@ export const Header = styled.header`
 
 export const Nav = styled.nav`
     width: fit-content;
-    background-color: black;
     height: 100%;
 
     display: flex;
@@ -30,7 +33,8 @@ export const Nav = styled.nav`
         font-family: 'Inter', sans-serif;
 
         &:hover {
-            border-bottom: 2px solid white;
+            border-bottom: 2px solid ${colors.danger[0]};
+            color: ${colors.danger[0]};
         }
     }
 `;
