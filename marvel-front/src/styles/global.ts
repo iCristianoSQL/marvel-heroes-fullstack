@@ -41,4 +41,8 @@ export const GlobalStyle: React.NamedExoticComponent<ExecutionProps & TemplateSt
         border: none;
         cursor: pointer;
     }
+
+    a {
+        text-decoration: none;
+    }
 `;
