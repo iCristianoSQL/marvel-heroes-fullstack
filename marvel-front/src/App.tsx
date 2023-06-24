@@ -1,10 +1,13 @@
-import withLayout from "./hocs/Layout/layout"
+import NavigationRoutes from "./routes";
 import { GlobalStyle } from "./styles/global"
 
 function App() {
   return (
-    <GlobalStyle />
+    <>
+      <NavigationRoutes />
+      <GlobalStyle />
+    </>
   );
 }
 
-export default withLayout(App)
+export default App
