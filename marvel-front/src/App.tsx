@@ -1,7 +1,10 @@
+import withLayout from "./hocs/Layout/layout"
+import { GlobalStyle } from "./styles/global"
+
 function App() {
   return (
-    <p>oiiiiiiiiiiiiiiiiiiiiiii</p>
-  )
+      <GlobalStyle />
+  );
 }
 
-export default App
+export default withLayout(App)
