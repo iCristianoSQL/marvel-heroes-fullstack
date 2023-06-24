@@ -1,5 +1,5 @@
 import NavigationRoutes from "./routes";
-import { GlobalStyle } from "./styles/global"
+import { GlobalStyle } from "./styles/global";
 
 function App() {
   return (
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
