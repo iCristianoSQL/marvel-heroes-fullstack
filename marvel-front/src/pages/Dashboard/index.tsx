@@ -3,7 +3,9 @@ import { HeroesCarousel } from "../../components";
 
 const Home = () => {
   return (
-    <HeroesCarousel />
+    <>
+      <HeroesCarousel />
+    </>
   );
 };
 

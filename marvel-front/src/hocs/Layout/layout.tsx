@@ -1,4 +1,4 @@
-import { NavigationBar } from "../../components";
+import { Footer, NavigationBar } from "../../components";
 import { Container } from "./styles";
 
 const withLayout =
@@ -9,6 +9,7 @@ const withLayout =
         <Container>
           <NavigationBar />
           <Component {...props} />
+          <Footer />
         </Container>
       </>
     );
