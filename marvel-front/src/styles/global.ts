@@ -18,8 +18,7 @@ export const GlobalStyle: React.NamedExoticComponent<ExecutionProps & TemplateSt
     }
 
     body, html {
-        height: 100vh;
-        width: 100vw;
+        background: ${colors.primary[0]};
     }
 
     html {
@@ -174,5 +173,22 @@ export const GlobalStyle: React.NamedExoticComponent<ExecutionProps & TemplateSt
         height: 2rem;
         margin-right: 1rem;
         fill: currentColor;
+    }
+
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, blue, red);
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, darkblue, darkred);
     }
 `;
