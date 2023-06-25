@@ -1,4 +1,4 @@
-import { ExecutionProps, createGlobalStyle } from 'styled-components'
+import { ExecutionProps, createGlobalStyle, styled } from 'styled-components'
 import { colors } from '../utils/colors';
 
 export const GlobalStyle: React.NamedExoticComponent<ExecutionProps & TemplateStringsArray | any> = createGlobalStyle`
@@ -191,4 +191,12 @@ export const GlobalStyle: React.NamedExoticComponent<ExecutionProps & TemplateSt
     ::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(to bottom, darkblue, darkred);
     }
+`;
+
+export const PageSection = styled.section`
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 85px;
+    margin-top: 5.5rem;
 `;
