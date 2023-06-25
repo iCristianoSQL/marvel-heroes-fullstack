@@ -1,10 +1,11 @@
 import withLayout from "../../hocs/Layout/layout";
-import { HeroesCarousel } from "../../components";
+import { HeroInformation, HeroesCarousel } from "../../components";
 
 const Home = () => {
   return (
     <>
       <HeroesCarousel />
+      <HeroInformation />
     </>
   );
 };
