@@ -1,7 +1,13 @@
+import NavigationRoutes from "./routes";
+import { GlobalStyle } from "./styles/global";
+
 function App() {
   return (
-    <p>oiiiiiiiiiiiiiiiiiiiiiii</p>
-  )
+    <>
+      <NavigationRoutes />
+      <GlobalStyle />
+    </>
+  );
 }
 
-export default App
+export default App;
