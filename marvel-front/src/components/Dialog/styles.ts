@@ -23,8 +23,9 @@ export const DialogContainer = styled.dialog<IDialogStyles>`
         justify-content: end;
 
         button {
+            background-color: transparent;
             svg {
-                fill: ${colors.primary[2]};
+                fill: ${colors.primary[1]};
                 font-size: 1rem;
             }
         }
