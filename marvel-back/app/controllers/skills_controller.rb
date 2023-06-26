@@ -3,39 +3,49 @@ class SkillsController < ApplicationController
   
     def index
       @skills = Skill.all
+      render json: {
+        message: "Habilidades carregadas com sucesso!",
+        data: @skills
+      }
     end
   
     def show
+      render json: {
+        message: 'Habilidade carregada com sucesso!',
+        data: @skill
+      }
     end
   
     def new
       @skill = Skill.new
+      render json: @skill
     end
   
     def create
       @skill = Skill.new(skill_params)
   
       if @skill.save
-        redirect_to @skill, notice: 'Skill was successfully created.'
+        render json: @skill, status: :created
       else
-        render :new
+        render json: @skill.errors, status: :unprocessable_entity
       end
     end
   
     def edit
+      render json: @skill
     end
   
     def update
       if @skill.update(skill_params)
-        redirect_to @skill, notice: 'Skill was successfully updated.'
+        render json: @skill
       else
-        render :edit
+        render json: @skill.errors, status: :unprocessable_entity
       end
     end
   
     def destroy
       @skill.destroy
-      redirect_to skills_url, notice: 'Skill was successfully destroyed.'
+      head :no_content
     end
   
     private
@@ -47,4 +57,4 @@ class SkillsController < ApplicationController
     def skill_params
       params.require(:skill).permit(:name, :description, :color)
     end
-end
+end  
