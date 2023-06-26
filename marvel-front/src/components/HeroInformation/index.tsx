@@ -16,8 +16,6 @@ export const HeroInformation = () => {
     }
   };
 
-  console.log('aqui está o heroi', hero);
-
   return (
     <PageSection id="infos">
       <S.Container>
