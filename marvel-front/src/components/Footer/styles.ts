@@ -12,6 +12,7 @@ export const Footer = styled.footer`
     align-items: center;
     justify-content: flex-end;
     gap: 1rem;
+    margin-top: 2rem;
 
     img {
         width: 2.5rem;
