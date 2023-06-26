@@ -1,47 +1,36 @@
-import React, { useContext, useRef } from "react";
+import { useContext, useRef } from "react";
 import { HeroSelectedContext } from "../../contexts/HeroSelectedContext";
 import { PageSection } from "../../styles/global";
 import * as S from "./styles";
 import { Button } from "../index";
 import { truncateText } from "../../utils/truncatedText";
-import Dialog from "../Dialog"
+import HeroDialog from "../Dialog/HeroDialog";
 
 export const HeroInformation = () => {
   const { hero } = useContext(HeroSelectedContext);
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const heroDialog = useRef<HTMLDialogElement>(null);
 
-  const openDialog = () => {
-      if (dialogRef.current) {
-          dialogRef.current.showModal();
-      }
+  const openHeroDialog = () => {
+    if (heroDialog.current) {
+      heroDialog.current.showModal();
+    }
   };
 
-  const closeDialog = () => {
-      if (dialogRef.current) {
-          dialogRef.current.close();
-      }
-  };
-
+  console.log('aqui está o heroi', hero);
 
   return (
-    <PageSection>
+    <PageSection id="infos">
       <S.Container>
         <img src={hero.image} alt={hero.name} />
         <div className="box-hero-info">
           <h1>{hero.name}</h1>
           <p>{truncateText(hero.description, 255)}</p>
-          <Button
-            handleClick={() => console.log("oiee")}
-            className="view-more-button"
-          >
+          <Button handleClick={openHeroDialog} className="view-more-button">
             Detalhes
           </Button>
         </div>
       </S.Container>
-      <button onClick={openDialog}>Open Dialog</button>
-            <Dialog handleCloseModal={closeDialog}  ref={dialogRef} >
-              <h1>Testando</h1>
-            </Dialog>
+      <HeroDialog ref={heroDialog} hero={hero}/>
     </PageSection>
   );
 };

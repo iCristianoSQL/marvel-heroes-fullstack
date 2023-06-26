@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { HeroSelectedContext } from "../../contexts/HeroSelectedContext";
 import { PageSection } from "../../styles/global";
 import { heroes } from "../../utils/heroes";
@@ -19,7 +19,7 @@ export const ListOfHeroes = () => {
   };
 
   return (
-    <PageSection>
+    <PageSection id='heroes'>
       <S.Container>
         <h1>Lista de heróis</h1>
         <div className="box-heroes-img">
