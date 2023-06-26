@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { createContext, useState } from "react";
 import { IHero } from "../utils/@types";
 import { heroes } from "../utils/heroes";
 
@@ -7,7 +7,7 @@ interface HeroSelectedContextType {
   setHeroValue: (newValue: IHero) => void;
 }
 
-const HeroSelectedContext = React.createContext<HeroSelectedContextType>(
+const HeroSelectedContext = createContext<HeroSelectedContextType>(
   {} as HeroSelectedContextType
 );
 
@@ -22,12 +22,9 @@ const HeroSelectedProvider = ({children}: any) => {
   const [hero, setHero] = useState<IHero>({
     id: heroFinded?.id ?? 4,
     name: heroFinded?.name ?? "Cyclope",
-    image:
-      heroFinded?.image ??
-      "https://terrigen-cdn-dev.marvel.com/content/prod/1x/002cyc_com_crd_01.jpg",
-    description:
-      heroFinded?.description ??
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam repudiandae ipsa laborum, non reiciendis laboriosam nobis iure modi ipsam officia voluptate ea amet fugit culpa sapiente, voluptatum et unde quaerat?",
+    banner: heroFinded?.banner ?? '',
+    image: heroFinded?.image ?? "https://terrigen-cdn-dev.marvel.com/content/prod/1x/002cyc_com_crd_01.jpg",
+    description: heroFinded?.description ?? "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam repudiandae ipsa laborum, non reiciendis laboriosam nobis iure modi ipsam officia voluptate ea amet fugit culpa sapiente, voluptatum et unde quaerat?",
   });
 
   const setHeroValue = (newValue: IHero) => {
