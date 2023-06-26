@@ -12,6 +12,10 @@ export const DialogContainer = styled.dialog<IDialogStyles>`
     padding: 0.5rem;
     border-radius: 1rem;
     margin: auto;
+    background-color: ${colors.primary[0]};
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, blue, red) 1;
 
     .box-close-modal {
         width: 100%;
