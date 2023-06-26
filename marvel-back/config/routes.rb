@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   end
   resources :teams do
   end
+  resources :champions do
+  end
 end
