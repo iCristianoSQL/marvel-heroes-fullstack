@@ -5,14 +5,14 @@ class TeamsController < ApplicationController
       @teams = Team.all
       render json: {
         message: "Equipes carregadas com sucesso!",
-        data: @teams
+        teams: @teams
       }
     end
   
     def show
       render json: {
         message: "Equipe carregada com sucesso!",
-        data: @team
+        teams: @team
       }
     end
   

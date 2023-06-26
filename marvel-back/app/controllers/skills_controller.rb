@@ -5,14 +5,14 @@ class SkillsController < ApplicationController
       @skills = Skill.all
       render json: {
         message: "Habilidades carregadas com sucesso!",
-        data: @skills
+        skills: @skills
       }
     end
   
     def show
       render json: {
         message: 'Habilidade carregada com sucesso!',
-        data: @skill
+        skills: @skill
       }
     end
   
