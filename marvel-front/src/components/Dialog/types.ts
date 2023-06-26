@@ -4,6 +4,5 @@ export interface IDialogStyles {
 }
 
 export interface IDialog extends IDialogStyles {
-    handleCloseModal: () => void;
     children: React.ReactNode;
   }
