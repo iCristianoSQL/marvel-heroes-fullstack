@@ -3,11 +3,11 @@ import { colors } from "../../utils/colors";
 
 export const Container = styled.header`
     width: 100%;
-    background-color: blue;
 
     nav {
         display: flex;
         width: 100%;
+        
         button {
             flex: 1;
             border-radius: initial;
