@@ -1,13 +1,19 @@
 class ChampionsController < ApplicationController
     before_action :set_champion, only: [:show, :update, :destroy]
-  
+
     def index
-      @champions = Champion.all
-      render json: @champions
+        @champions = Champion.all
+        render json: {
+            message: "Campeões carregados com sucesso!",
+            champions: @champions.as_json(include: :skills)
+        }
     end
   
     def show
-      render json: @champion
+        render json: {
+          message: "Campeão carregado com sucesso!",
+          champion: @champion.as_json(include: :skills)
+        }
     end
   
     def create
