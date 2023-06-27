@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_233451) do
     t.text "description", null: false
     t.bigint "team_id"
     t.string "image", null: false
+    t.string "banner", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_champions_on_name", unique: true

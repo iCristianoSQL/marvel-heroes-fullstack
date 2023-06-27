@@ -5,6 +5,7 @@ class CreateChampions < ActiveRecord::Migration[7.0]
       t.text :description, limit: 650, null: false
       t.references :team, foreign_key: true
       t.string :image, null: false
+      t.string :banner, null: false
 
       t.timestamps
     end
