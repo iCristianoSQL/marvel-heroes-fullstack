@@ -9,4 +9,8 @@ export const PageButton = styled.button`
     border-radius: 10px;
     
     text-transform: uppercase;
+
+    &:hover {
+        filter: brightness(0.7);
+    }
 `;

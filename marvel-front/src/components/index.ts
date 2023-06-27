@@ -4,3 +4,4 @@ export { Footer } from "./Footer";
 export { HeroInformation } from "./HeroInformation";
 export { Button } from "./Button";
 export { ListOfHeroes } from "./ListOfHeroes";
+export { MarvelCrud } from "./MarvelCrud";
