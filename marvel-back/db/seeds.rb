@@ -1,7 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'json'
+
+json_champions = File.read(Rails.root.join('db', 'champions.json'))
+champions = JSON.parse(json_champions)
+
+champions.each do |champion|
+  begin
+    Champion.create!(
+      name: champion['name'],
+      description: champion['description'],
+      image: champion['image'],
+      banner: champion['banner']
+    )
+    puts "Campeão #{champion['name']} adicionado com sucesso!"
+  rescue ActiveRecord::RecordInvalid => e
+    puts "#{champion['name']}: #{e.message}"
+  end
+end
