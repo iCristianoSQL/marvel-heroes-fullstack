@@ -1,17 +1,16 @@
 import { useContext, useState } from "react";
 import { HeroSelectedContext } from "../../contexts/HeroSelectedContext";
 import { PageSection } from "../../styles/global";
-import { heroes } from "../../utils/heroes";
 import * as S from "./styles";
-import { IHero } from "../../utils/@types";
+import { IChampion } from "../../utils/@types";
 import { Button } from "..";
 
 export const ListOfHeroes = () => {
-  const { setHeroValue } = useContext(HeroSelectedContext);
+  const { heroes, setSelectedHero } = useContext(HeroSelectedContext);
   const [visibleHeroes, setVisibleHeroes] = useState(6);
 
-  const handleImageClick = (hero: IHero) => {
-    setHeroValue(hero);
+  const handleImageClick = (hero: IChampion) => {
+    setSelectedHero(hero);
   };
 
   const handleShowMore = () => {
