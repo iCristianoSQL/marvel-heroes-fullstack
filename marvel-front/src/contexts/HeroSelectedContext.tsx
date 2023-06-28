@@ -8,6 +8,7 @@ import {
 import { IChampion } from "../utils/@types";
 import { MarvelServices } from "../services/marvel";
 import { initialChampion } from "../mocks/champion";
+
 interface HeroSelectedContextType {
   heroes: IChampion[];
   selectedHero: IChampion | null;
@@ -26,19 +27,13 @@ const HeroSelectedProvider = ({ children }: { children: ReactNode }) => {
     initialChampion
   );
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await MarvelServices.getChampions();
-        const champions = response.champions;
-        setHeroes(champions);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+  const { data: champions } = MarvelServices.useGetChampions();
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    if (champions) {
+      setHeroes(champions.champions);
+    }
+  }, [champions]);
 
   return (
     <HeroSelectedContext.Provider
