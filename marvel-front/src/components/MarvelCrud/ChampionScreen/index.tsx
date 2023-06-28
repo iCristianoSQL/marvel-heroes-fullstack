@@ -6,7 +6,6 @@ export const ChampionScreen = () => {
   const [image1080x1920, setImage1080x1920] = useState<string | null>(null);
   const [image1920x1080, setImage1920x1080] = useState<string | null>(null);
   const [heroName, setHeroName] = useState("Wolverine");
-  console.log(heroName);
 
   const handleImage1080x1920Change = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
