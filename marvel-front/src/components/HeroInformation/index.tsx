@@ -5,9 +5,10 @@ import * as S from "./styles";
 import { Button } from "../index";
 import { truncateText } from "../../utils/truncatedText";
 import HeroDialog from "../Dialog/HeroDialog";
+import { initialChampion } from "../../mocks/champion";
 
 export const HeroInformation = () => {
-  const { hero } = useContext(HeroSelectedContext);
+  const { selectedHero } = useContext(HeroSelectedContext);
   const heroDialog = useRef<HTMLDialogElement>(null);
 
   const openHeroDialog = () => {
@@ -19,16 +20,16 @@ export const HeroInformation = () => {
   return (
     <PageSection id="infos">
       <S.Container>
-        <img src={hero.image} alt={hero.name} />
+        <img src={selectedHero?.image} alt={selectedHero?.name} />
         <div className="box-hero-info">
-          <h1>{hero.name}</h1>
-          <p>{truncateText(hero.description, 255)}</p>
+          <h1>{selectedHero?.name}</h1>
+          <p>{truncateText(selectedHero?.description ?? '', 255)}</p>
           <Button handleClick={openHeroDialog} className="view-more-button">
             Detalhes
           </Button>
         </div>
       </S.Container>
-      <HeroDialog ref={heroDialog} hero={hero}/>
+      <HeroDialog ref={heroDialog} hero={selectedHero ?? initialChampion}/>
     </PageSection>
   );
 };
