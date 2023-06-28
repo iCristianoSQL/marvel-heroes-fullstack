@@ -2,6 +2,13 @@ import { styled } from "styled-components";
 import { colors } from "../../../utils/colors";
 
 export const Container = styled.div`
+  h1 {
+    text-align: center;
+  }
+  .register-champion-box {
+    display: flex;
+  }
+
   .images-box {
     display: flex;
     .profile-image-box {
