@@ -27,4 +27,14 @@ export const Container = styled.div`
   button {
     margin-top: 1rem;
   }
+
+  .empty-image {
+    margin-top: 2rem;
+    width: 12rem;
+  }
+
+  .empty-text {
+    margin-top: 0.4rem;
+    font-size: 1rem;
+  }
 `;
