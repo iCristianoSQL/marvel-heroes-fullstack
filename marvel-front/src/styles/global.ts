@@ -176,7 +176,7 @@ export const GlobalStyle: React.NamedExoticComponent<ExecutionProps & TemplateSt
     }
 
     ::-webkit-scrollbar {
-        width: 12px;
+        width: 3px;
     }
 
     ::-webkit-scrollbar-track {
