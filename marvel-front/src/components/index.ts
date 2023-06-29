@@ -5,3 +5,4 @@ export { HeroInformation } from "./HeroInformation";
 export { Button } from "./Button";
 export { ListOfHeroes } from "./ListOfHeroes";
 export { MarvelCrud } from "./MarvelCrud";
+export { SkillList } from "./SkillList";
