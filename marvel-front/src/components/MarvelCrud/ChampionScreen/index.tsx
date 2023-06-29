@@ -8,8 +8,8 @@ import TextArea from "../../TextArea";
 import { useMutation } from "react-query";
 import { uploadImage } from "../../../services/imgBB";
 import { Button, SkillList } from "../..";
-import { MarvelServices } from "../../../services/marvel";
 import { ISkills } from "../../../utils/@types";
+import { api } from "../../../services/api";
 
 const schema = z.object({
   name: z.string().max(20).nonempty(),
@@ -17,6 +17,7 @@ const schema = z.object({
   team: z.number().optional(),
   image: z.string().optional(),
   banner: z.string().optional(),
+  skills: z.array(z.number()).optional(),
 });
 
 type ChampionSchema = z.infer<typeof schema>;
@@ -24,9 +25,10 @@ type ChampionSchema = z.infer<typeof schema>;
 export const ChampionScreen = () => {
   const [championImage, setChampionImage] = useState<string | null>(null);
   const [bannerImage, setBannerImage] = useState<string | null>(null);
-  const fileInputRef = useRef<File | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<ISkills>({} as ISkills);
-  console.log(selectedSkill)
+
+  const fileChampionImageRef = useRef<File | null>(null);
+  const fileBannerImageRef = useRef<File | null>(null);
 
   const handleSkillSelect = (skill: ISkills) => {
     setSelectedSkill(skill);
@@ -45,16 +47,22 @@ export const ChampionScreen = () => {
 
   const onSubmit = async (data: ChampionSchema) => {
     try {
-      if (fileInputRef.current) {
-        const result = await uploadImageMutation.mutateAsync(
-          fileInputRef.current
+      if (fileChampionImageRef.current && fileBannerImageRef.current) {
+        const championImageResult = await uploadImageMutation.mutateAsync(
+          fileChampionImageRef.current
         );
 
-        if (result && result.data && result.data.display_url) {
+        const bannerImageResult = await uploadImageMutation.mutateAsync(
+          fileBannerImageRef.current
+        );
+        if (championImageResult && championImageResult.data && championImageResult.data.display_url && bannerImageResult && bannerImageResult.data && bannerImageResult.data.display_url) {
           const updatedData: ChampionSchema = {
             ...data,
-            banner: result.data.display_url,
+            image: championImageResult.data.display_url,
+            banner: bannerImageResult.data.display_url,
+            skills: [selectedSkill.id, 5, 6, 7, 8],
           };
+          await api.post("/champions", updatedData);
         } else {
           console.log("Ainda não deu certo");
         }
@@ -70,7 +78,7 @@ export const ChampionScreen = () => {
     const file = event.target.files && event.target.files[0];
     if (file) {
       setChampionImage(URL.createObjectURL(file));
-      fileInputRef.current = file;
+      fileChampionImageRef.current = file;
     }
   };
 
@@ -78,6 +86,7 @@ export const ChampionScreen = () => {
     const file = event.target.files && event.target.files[0];
     if (file) {
       setBannerImage(URL.createObjectURL(file));
+      fileBannerImageRef.current = file;
     }
   };
 

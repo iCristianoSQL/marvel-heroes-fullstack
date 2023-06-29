@@ -18,7 +18,9 @@ class ChampionsController < ApplicationController
   
     def create
       @champion = Champion.new(champion_params)
-  
+      @champion.instance_variable_set(:@saved_from_controller, true)
+      @champion.skills_ids = params[:skills]
+
       if @champion.save
         render json: @champion, status: :created
       else
@@ -46,6 +48,13 @@ class ChampionsController < ApplicationController
     end
   
     def champion_params
-      params.require(:champion).permit(:name, :description, :team_id, :image)
+      params.require(:champion).permit(
+        :name,
+        :description,
+        :team_id,
+        :image,
+        :banner,
+        skill_ids: []
+      )
     end
 end  
