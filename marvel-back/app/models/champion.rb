@@ -4,8 +4,8 @@ class Champion < ApplicationRecord
   belongs_to :team, optional: true
   has_and_belongs_to_many :skills
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
-  validates :description, presence: true, length: { maximum: 2000 }
+  validates :name, presence: true, uniqueness: { message: "O campeão %{value} já existe" }, length: { maximum: 20 }
+  validates :description, presence: { message: "A descrição não pode ficar em branco" }, length: { maximum: 2000, message: "A descrição deve ter no máximo %{count} caracteres" }
 
   after_commit :attach_skills, on: :create, if: :saved_from_controller?
 
