@@ -11,7 +11,7 @@ interface ScreenComponents {
 }
 
 export const MarvelCrud = () => {
-  const [activeScreen, setActiveScreen] = useState("Skill");
+  const [activeScreen, setActiveScreen] = useState("Champion");
 
   const renderScreen = (screenName: string) => {
     setActiveScreen(screenName);

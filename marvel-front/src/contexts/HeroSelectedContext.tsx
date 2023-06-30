@@ -1,38 +1,44 @@
-import { ReactNode, createContext, useState } from "react";
-import { IHero } from "../utils/@types";
-import { heroes } from "../utils/heroes";
+import {
+  createContext,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
+import { IChampion } from "../utils/@types";
+import { MarvelServices } from "../services/marvel";
+import { initialChampion } from "../mocks/champion";
 
 interface HeroSelectedContextType {
-  hero: IHero;
-  setHeroValue: (newValue: IHero) => void;
+  heroes: IChampion[];
+  selectedHero: IChampion | null;
+  setSelectedHero: (hero: IChampion | null) => void;
 }
 
-const HeroSelectedContext = createContext<HeroSelectedContextType>(
-  {} as HeroSelectedContextType
-);
-
-const ids: number[] = [];
-heroes.forEach((hero) => {
-  ids.push(hero.id);
+const HeroSelectedContext = createContext<HeroSelectedContextType>({
+  heroes: [],
+  selectedHero: null,
+  setSelectedHero: {} as (hero: SetStateAction<IChampion | null>) => void,
 });
-const randomIndex = Math.floor(Math.random() * ids.length);
-const heroFinded = heroes.find((hero) => hero.id === ids[randomIndex]) ?? {} as IHero;
 
-const HeroSelectedProvider = ({children}: { children: ReactNode }) => {
-  const [hero, setHero] = useState<IHero>({
-    id: heroFinded?.id,
-    name: heroFinded?.name,
-    banner: heroFinded?.banner,
-    image: heroFinded?.image,
-    description: heroFinded?.description,
-  });
+const HeroSelectedProvider = ({ children }: { children: ReactNode }) => {
+  const [heroes, setHeroes] = useState<IChampion[]>([]);
+  const [selectedHero, setSelectedHero] = useState<IChampion | null>(
+    initialChampion
+  );
 
-  const setHeroValue = (newValue: IHero) => {
-    setHero(newValue);
-  };
+  const { data: champions } = MarvelServices.useGetChampions();
+
+  useEffect(() => {
+    if (champions) {
+      setHeroes(champions.champions);
+    }
+  }, [champions]);
 
   return (
-    <HeroSelectedContext.Provider value={{ hero, setHeroValue }}>
+    <HeroSelectedContext.Provider
+      value={{ heroes, selectedHero, setSelectedHero }}
+    >
       {children}
     </HeroSelectedContext.Provider>
   );

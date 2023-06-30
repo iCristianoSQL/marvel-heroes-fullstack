@@ -1,5 +1,7 @@
-export interface IButton {
+import { ButtonHTMLAttributes } from "react";
+
+export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
-  handleClick: () => void;
+  handleClick?: () => void;
 }

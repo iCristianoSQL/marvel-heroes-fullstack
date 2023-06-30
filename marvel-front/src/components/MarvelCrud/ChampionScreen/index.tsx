@@ -1,61 +1,208 @@
-import React, { useState } from "react";
-import * as S from "./styles";
+import React, { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useMutation } from "react-query";
 import { AiOutlineFileImage } from "react-icons/ai";
 
-export const ChampionScreen = () => {
-  const [image1080x1920, setImage1080x1920] = useState<string | null>(null);
-  const [image1920x1080, setImage1920x1080] = useState<string | null>(null);
-  const [heroName, setHeroName] = useState("Wolverine");
-  console.log(heroName);
+import { uploadImage } from "../../../services/imgBB";
+import { api } from "../../../services/api";
+import { IChampion, ISkills } from "../../../utils/@types";
+import { schema } from "./schema";
 
-  const handleImage1080x1920Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+import * as S from "./styles";
+import { SkillTag } from "../../SkillList/SkillTag";
+import TextInput from "../../TextInput";
+import TextArea from "../../TextArea";
+import { Button, SkillList } from "../..";
+import SelectInput from "../../SelectInput";
+import { MarvelServices } from "../../../services/marvel";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+import { handleRequestError } from "../../../utils/requestErrors";
+
+type ChampionSchema = z.infer<typeof schema>;
+
+export const ChampionScreen = () => {
+  const [championImage, setChampionImage] = useState<string | null>(null);
+  const [bannerImage, setBannerImage] = useState<string | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<ISkills[]>([]);
+  const uploadImageMutation = useMutation(uploadImage);
+  const createChampion = useMutation(MarvelServices.usePostChampion);
+
+  const fileChampionImageRef = useRef<File | null>(null);
+  const fileBannerImageRef = useRef<File | null>(null);
+
+  const { data: teams } = MarvelServices.useGetTemas();
+  const teamsOptions = teams?.teams?.map(({ id, name }) => ({ value: id || undefined, label: name })) ?? [];
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<ChampionSchema>();
+
+  const championName = watch("name");
+  const team = watch("team");
+
+  const handleSkillSelect = (skill: ISkills) => {
+    if (!selectedSkill.find((selected) => selected.id === skill.id)) {
+      setSelectedSkill((prevSkills) => [...prevSkills, skill]);
+    }
+  };
+
+  const handleSkillRemove = (skill: ISkills) => {
+    setSelectedSkill((prevSkills) =>
+      prevSkills.filter((event) => event.id !== skill.id)
+    );
+  };
+
+  const handleImageChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setImage: React.Dispatch<React.SetStateAction<string | null>>,
+    fileRef: React.MutableRefObject<File | null>
+  ) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
-      setImage1080x1920(URL.createObjectURL(file));
+      setImage(URL.createObjectURL(file));
+      fileRef.current = file;
+    }
+  };
+
+  const handleChampionImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleImageChange(event, setChampionImage, fileChampionImageRef);
+  };
+
+  const handleBannerImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleImageChange(event, setBannerImage, fileBannerImageRef);
+  };
+
+  const onSubmit = async (data: ChampionSchema) => {
+    try {
+      if (!fileChampionImageRef.current || !fileBannerImageRef.current) {
+        toast.error(fileChampionImageRef.current && fileBannerImageRef.current ? "As duas imagens foram inseridas." : fileBannerImageRef.current ? "Insira a imagem do Campeão." : fileChampionImageRef.current ? "Insira o banner." : "Insira o banner e a imagem do Campeão.");
+        return;
+      }
+  
+      const championImageResult = await uploadImageMutation.mutateAsync(fileChampionImageRef.current);
+      const bannerImageResult = await uploadImageMutation.mutateAsync(fileBannerImageRef.current);
+  
+      if (!championImageResult?.data?.display_url || !bannerImageResult?.data?.display_url) {
+        console.log("Ainda não deu certo");
+        return;
+      }
+  
+      const skills = selectedSkill.map((skillId) => skillId.id);
+      const updatedData: IChampion = {
+        ...data,
+        image: 'championImageResult.data.display_url',
+        banner: 'bannerImageResult.data.display_url',
+        team_id: team,
+        skills,
+      };
+  
+      createChampion.mutateAsync(updatedData);
+    } catch (error) {
+      handleRequestError(error)
     }
   };
   
-  const handleImage1920x1080Change = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0];
-    if (file) {
-      setImage1920x1080(URL.createObjectURL(file));
-    }
-  };  
 
   return (
     <S.Container>
-      <h1>ChampionScreen</h1>
-      <button onClick={() => setImage1080x1920(null)}>testeee</button>
-      <div className="images-box">
-        <div className="profile-image-box">
-          <div className="champion-image">
-            {(image1080x1920 && (
-              <>
-                <img src={image1080x1920} alt="Image 1080x1920" />
-                <span>
-                  <h1>{heroName}</h1>
-                </span>
-              </>
-            )) || <AiOutlineFileImage />}
-          </div>
+      <h1>Cadastre um campeão</h1>
+      <S.Form onSubmit={handleSubmit(onSubmit)}>
+        <div className="register-box">
           <S.FileInput>
-            <label className="custom-file-upload">
-              Selecionar arquivo
-              <input
-                type="file"
-                id="image1080x1920"
-                onChange={handleImage1080x1920Change}
-              />
+            <input
+              type="file"
+              id="championImage"
+              onChange={handleChampionImage}
+            />
+            <label htmlFor="championImage" className="custom-file-upload">
+              <div className="champion-image">
+                {championImage && (
+                  <>
+                    <img src={championImage} alt="Champion Image" />
+                    <span>
+                      <h1>{championName}</h1>
+                    </span>
+                  </>
+                )}
+                {!championImage && <AiOutlineFileImage />}
+              </div>
             </label>
           </S.FileInput>
+          <div className="first-column-form">
+            <TextInput
+              placeholder="Nome do campeão"
+              type="text"
+              id="name"
+              register={register("name", { required: true })}
+            />
+            {errors.name && (
+              <span className="error">O nome é obrigatório.</span>
+            )}
+
+            <SelectInput
+              register={register("team")}
+              options={[
+                { value: undefined, label: "Selecione uma Equipe" },
+                ...teamsOptions
+              ]}
+              width="100%"
+            />
+            <span className='skill-title'>Habilidades:</span>
+            <SkillList
+              onSelect={handleSkillSelect}
+              width="100%"
+              height="16rem"
+              className="skills-list"
+            />
+          </div>
+
+          <div className="second-column-form">
+            <TextArea
+              placeholder="Descrição"
+              id="description"
+              register={register("description", { required: true })}
+            />
+            {errors.description && (
+              <span className="error">A descrição é obrigatória.</span>
+            )}
+
+            <S.FileInput>
+              <input
+                type="file"
+                id="bannerImage"
+                onChange={handleBannerImage}
+              />
+              <label htmlFor="bannerImage" className="custom-file-upload">
+                <div className="banner-image">
+                  {bannerImage && <img src={bannerImage} alt="Banner" />}
+                  {!bannerImage && <AiOutlineFileImage />}
+                </div>
+              </label>
+            </S.FileInput>
+          </div>
         </div>
-      </div>
+        <S.SkillsDiv>
+          {selectedSkill.map((skill: ISkills) => {
+            return (
+              <SkillTag
+                description={skill.description}
+                tooltipId={String(skill.id)}
+                key={skill.id}
+                color={skill.color}
+                onClick={() => handleSkillRemove(skill)}
+              >
+                {skill.name}
+              </SkillTag>
+            );
+          })}
+        </S.SkillsDiv>
+        <Button type="submit">Enviar</Button>
+      </S.Form>
     </S.Container>
   );
 };
-
-/* <div className='banner-image-box'>
-            {image1920x1080 && <img src={image1920x1080} alt="Image 1920x1080"/>}
-            <label htmlFor="image1920x1080">Image 1920x1080:</label>
-            <input type="file" id="image1920x1080" onChange={handleImage1920x1080Change} />
-        </div> */
