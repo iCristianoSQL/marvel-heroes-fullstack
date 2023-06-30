@@ -6,6 +6,9 @@ champions = JSON.parse(json_champions)
 json_skills = File.read(Rails.root.join('db', 'skills.json'))
 skills = JSON.parse(json_skills)
 
+json_teams = File.read(Rails.root.join('db', 'teams.json'))
+teams = JSON.parse(json_teams)
+
 champions.each do |champion|
   begin
     Champion.create!(
@@ -30,5 +33,18 @@ skills.each do |skill|
     puts "Habilidade #{skill['name']} adicionada com sucesso!"
   rescue ActiveRecord::RecordInvalid => e
     puts "#{skill['name']}: #{e.message}"
+  end
+end
+
+teams.each do |team|
+  begin
+    Team.create!(
+      name: team['name'],
+      description: team['description'],
+      shield: team['shield'],
+    )
+    puts "Equipe #{team['name']} adicionada com sucesso!"
+  rescue ActiveRecord::RecordInvalid => e
+    puts "#{team['name']}: #{e.message}"
   end
 end

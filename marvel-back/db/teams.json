@@ -1,0 +1,177 @@
+[
+  {
+    "name": "Vingadores",
+    "description": "Grupo de super-heróis que protege a Terra de ameaças cósmicas.",
+    "shield": "link_para_imagem_vingadores"
+  },
+  {
+    "name": "X-Men",
+    "description": "Mutantes que lutam pela coexistência pacífica entre humanos e mutantes.",
+    "shield": "link_para_imagem_xmen"
+  },
+  {
+    "name": "Guardiões da Galáxia",
+    "description": "Equipe de aventureiros espaciais que protege a galáxia de ameaças intergalácticas.",
+    "shield": "link_para_imagem_guardioes_galaxia"
+  },
+  {
+    "name": "Quarteto Fantástico",
+    "description": "Grupo de super-heróis com habilidades especiais que enfrenta ameaças ao universo.",
+    "shield": "link_para_imagem_quarteto_fantastico"
+  },
+  {
+    "name": "X-Force",
+    "description": "Equipe de mutantes que realiza missões secretas para proteger os direitos dos mutantes.",
+    "shield": "link_para_imagem_xforce"
+  },
+  {
+    "name": "Defensores",
+    "description": "Grupo de heróis urbanos que protege Nova York de ameaças criminais e sobrenaturais.",
+    "shield": "link_para_imagem_defensores"
+  },
+  {
+    "name": "S.H.I.E.L.D.",
+    "description": "Agência de espionagem e segurança internacional que protege o mundo de ameaças.",
+    "shield": "link_para_imagem_shield"
+  },
+  {
+    "name": "Inumanos",
+    "description": "Raça de super-humanos com poderes especiais que vivem em segredo na Terra.",
+    "shield": "link_para_imagem_inumanos"
+  },
+  {
+    "name": "Thunderbolts",
+    "description": "Equipe de anti-heróis e ex-vilões que realizam missões perigosas em troca de redenção.",
+    "shield": "link_para_imagem_thunderbolts"
+  },
+  {
+    "name": "Excalibur",
+    "description": "Equipe de super-heróis britânicos que protege o Reino Unido de ameaças místicas.",
+    "shield": "link_para_imagem_excalibur"
+  },
+  {
+    "name": "Novos Mutantes",
+    "description": "Jovens mutantes em treinamento que enfrentam ameaças sobrenaturais e mutantes perigosos.",
+    "shield": "link_para_imagem_novos_mutantes"
+  },
+  {
+    "name": "Vingadores Sombrios",
+    "description": "Equipe de anti-heróis e vilões que operam sob o nome dos Vingadores originais.",
+    "shield": "link_para_imagem_vingadores_sombrios"
+  },
+  {
+    "name": "Academia Vingadores",
+    "description": "Escola para jovens super-heróis em treinamento, fundada pelos Vingadores.",
+    "shield": "link_para_imagem_academia_vingadores"
+  },
+  {
+    "name": "Cavaleiros da Lua",
+    "description": "Herói vigilante com habilidades especiais que protege a noite.",
+    "shield": "link_para_imagem_cavaleiros_lua"
+  },
+  {
+    "name": "Poderosos Vingadores",
+    "description": "Equipe de super-heróis formada para enfrentar ameaças cósmicas de grande escala.",
+    "shield": "link_para_imagem_poderosos_vingadores"
+  },
+  {
+    "name": "Runaways",
+    "description": "Grupo de adolescentes que descobrem que seus pais são supervilões e se unem para enfrentá-los.",
+    "shield": "link_para_imagem_runaways"
+  },
+  {
+    "name": "A-Force",
+    "description": "Equipe exclusivamente feminina de super-heroínas que defendem a justiça.",
+    "shield": "link_para_imagem_a_force"
+  },
+  {
+    "name": "Eternos",
+    "description": "Raça de seres imortais com poderes sobre-humanos que protegem a Terra de ameaças cósmicas.",
+    "shield": "link_para_imagem_eternos"
+  },
+  {
+    "name": "Vingadores Jovens",
+    "description": "Versão mais jovem dos Vingadores originais, formada por heróis adolescentes.",
+    "shield": "link_para_imagem_vingadores_jovens"
+  },
+  {
+    "name": "Skrulls",
+    "description": "Raça alienígena metamorfa que pode se infiltrar e imitar outras formas de vida.",
+    "shield": "link_para_imagem_skrulls"
+  },
+  {
+    "name": "Defensores Secretos",
+    "description": "Equipe formada por heróis marginalizados que operam nas sombras para proteger o mundo.",
+    "shield": "link_para_imagem_defensores_secretos"
+  },
+  {
+    "name": "Heróis de Aluguel",
+    "description": "Dupla de heróis de aluguel que atuam como detetives e solucionadores de problemas.",
+    "shield": "link_para_imagem_herois_aluguel"
+  },
+  {
+    "name": "Punho de Ferro",
+    "description": "Mestre das artes marciais com a habilidade de invocar o poder do Punho de Ferro.",
+    "shield": "link_para_imagem_punho_ferro"
+  },
+  {
+    "name": "Filhos da Meia-Noite",
+    "description": "Equipe de sobrenaturais que combate ameaças sobrenaturais e ocultas.",
+    "shield": "link_para_imagem_filhos_meia_noite"
+  },
+  {
+    "name": "Quarteto Futuro",
+    "description": "Versão futurista do Quarteto Fantástico, com tecnologia avançada e poderes aprimorados.",
+    "shield": "link_para_imagem_quarteto_futuro"
+  },
+  {
+    "name": "Vingadores Jovens Unidos",
+    "description": "Equipe formada pela união dos Vingadores Jovens e da Academia Vingadores.",
+    "shield": "link_para_imagem_vingadores_jovens_unidos"
+  },
+  {
+    "name": "Ordem Negra",
+    "description": "Equipe de vilões e guerreiros leais a Thanos, o Titã Louco.",
+    "shield": "link_para_imagem_ordem_negra"
+  },
+  {
+    "name": "Cavaleiros do Espaço",
+    "description": "Grupo de heróis cósmicos que protege o universo de ameaças intergalácticas.",
+    "shield": "link_para_imagem_cavaleiros_espaco"
+  },
+  {
+    "name": "Slingers",
+    "description": "Equipe de heróis jovens que assumem identidades secretas e lutam contra o crime.",
+    "shield": "link_para_imagem_slingers"
+  },
+  {
+    "name": "Aniquiladores",
+    "description": "Equipe de heróis cósmicos que enfrenta ameaças cósmicas destrutivas.",
+    "shield": "link_para_imagem_aniquiladores"
+  },
+  {
+    "name": "Eternos da Terra",
+    "description": "Eternos que decidiram proteger exclusivamente a Terra de ameaças cósmicas.",
+    "shield": "link_para_imagem_eternos_terra"
+  },
+  {
+    "name": "Guerreiros Secretos",
+    "description": "Equipe de super-espiões e agentes secretos que lidam com ameaças ocultas.",
+    "shield": "link_para_imagem_guerreiros_secretos"
+  },
+  {
+    "name": "Poderosos Heróis Marvel",
+    "description": "Equipe composta por heróis diversos e poderosos de todo o universo Marvel.",
+    "shield": "link_para_imagem_poderosos_herois_marvel"
+  },
+  {
+    "name": "Alpha Flight",
+    "description": "Equipe de super-heróis canadenses que protege o Canadá de ameaças super-humanas.",
+    "shield": "link_para_imagem_alpha_flight"
+  },
+  {
+    "name": "Illuminati",
+    "description": "Grupo secreto formado pelos líderes dos principais heróis da Marvel para enfrentar ameaças globais.",
+    "shield": "link_para_imagem_illuminati"
+  }
+]
