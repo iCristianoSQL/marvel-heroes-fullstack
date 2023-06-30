@@ -95,7 +95,7 @@ export const Form = styled.form`
       width: 30rem;
       height: 23rem;
 
-      input[type="number"] {
+      select {
         margin-top: 0.5rem;
       }
 
@@ -103,7 +103,7 @@ export const Form = styled.form`
         width: 100%;
       }
 
-      span {
+      .skill-title {
         margin-top: 1rem;
         display: block;
         font-weight: 600;
@@ -133,7 +133,7 @@ export const Form = styled.form`
 `;
 
 export const SkillsDiv = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;

@@ -6,7 +6,7 @@ import { AiOutlineFileImage } from "react-icons/ai";
 
 import { uploadImage } from "../../../services/imgBB";
 import { api } from "../../../services/api";
-import { ISkills } from "../../../utils/@types";
+import { IChampion, ISkills } from "../../../utils/@types";
 import { schema } from "./schema";
 
 import * as S from "./styles";
@@ -14,6 +14,11 @@ import { SkillTag } from "../../SkillList/SkillTag";
 import TextInput from "../../TextInput";
 import TextArea from "../../TextArea";
 import { Button, SkillList } from "../..";
+import SelectInput from "../../SelectInput";
+import { MarvelServices } from "../../../services/marvel";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+import { handleRequestError } from "../../../utils/requestErrors";
 
 type ChampionSchema = z.infer<typeof schema>;
 
@@ -21,11 +26,14 @@ export const ChampionScreen = () => {
   const [championImage, setChampionImage] = useState<string | null>(null);
   const [bannerImage, setBannerImage] = useState<string | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<ISkills[]>([]);
-
   const uploadImageMutation = useMutation(uploadImage);
+  const createChampion = useMutation(MarvelServices.usePostChampion);
 
   const fileChampionImageRef = useRef<File | null>(null);
   const fileBannerImageRef = useRef<File | null>(null);
+
+  const { data: teams } = MarvelServices.useGetTemas();
+  const teamsOptions = teams?.teams?.map(({ id, name }) => ({ value: id || undefined, label: name })) ?? [];
 
   const {
     register,
@@ -35,6 +43,7 @@ export const ChampionScreen = () => {
   } = useForm<ChampionSchema>();
 
   const championName = watch("name");
+  const team = watch("team");
 
   const handleSkillSelect = (skill: ISkills) => {
     if (!selectedSkill.find((selected) => selected.id === skill.id)) {
@@ -70,40 +79,34 @@ export const ChampionScreen = () => {
 
   const onSubmit = async (data: ChampionSchema) => {
     try {
-      if (fileChampionImageRef.current && fileBannerImageRef.current) {
-        const championImageResult = await uploadImageMutation.mutateAsync(
-          fileChampionImageRef.current
-        );
-
-        const bannerImageResult = await uploadImageMutation.mutateAsync(
-          fileBannerImageRef.current
-        );
-
-        const skills = selectedSkill.map((skillId) => skillId.id)
-
-        if (
-          championImageResult &&
-          championImageResult.data &&
-          championImageResult.data.display_url &&
-          bannerImageResult &&
-          bannerImageResult.data &&
-          bannerImageResult.data.display_url
-        ) {
-          const updatedData: ChampionSchema = {
-            ...data,
-            image: championImageResult.data.display_url,
-            banner: bannerImageResult.data.display_url,
-            skills
-          };
-          await api.post("/champions", updatedData);
-        } else {
-          console.log("Ainda não deu certo");
-        }
+      if (!fileChampionImageRef.current || !fileBannerImageRef.current) {
+        toast.error(fileChampionImageRef.current && fileBannerImageRef.current ? "As duas imagens foram inseridas." : fileBannerImageRef.current ? "Insira a imagem do Campeão." : fileChampionImageRef.current ? "Insira o banner." : "Insira o banner e a imagem do Campeão.");
+        return;
       }
+  
+      const championImageResult = await uploadImageMutation.mutateAsync(fileChampionImageRef.current);
+      const bannerImageResult = await uploadImageMutation.mutateAsync(fileBannerImageRef.current);
+  
+      if (!championImageResult?.data?.display_url || !bannerImageResult?.data?.display_url) {
+        console.log("Ainda não deu certo");
+        return;
+      }
+  
+      const skills = selectedSkill.map((skillId) => skillId.id);
+      const updatedData: IChampion = {
+        ...data,
+        image: 'championImageResult.data.display_url',
+        banner: 'bannerImageResult.data.display_url',
+        team_id: team,
+        skills,
+      };
+  
+      createChampion.mutateAsync(updatedData);
     } catch (error) {
-      console.error(error);
+      handleRequestError(error)
     }
   };
+  
 
   return (
     <S.Container>
@@ -141,13 +144,15 @@ export const ChampionScreen = () => {
               <span className="error">O nome é obrigatório.</span>
             )}
 
-            <TextInput
-              placeholder="Equipe"
-              type="number"
-              id="team"
+            <SelectInput
               register={register("team")}
+              options={[
+                { value: undefined, label: "Selecione uma Equipe" },
+                ...teamsOptions
+              ]}
+              width="100%"
             />
-            <span>Habilidades:</span>
+            <span className='skill-title'>Habilidades:</span>
             <SkillList
               onSelect={handleSkillSelect}
               width="100%"
