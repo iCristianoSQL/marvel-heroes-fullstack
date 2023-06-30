@@ -1,10 +1,12 @@
 export interface IChampion {
-    id: number;
-    name: string;
-    image: string;
-    banner: string;
-    description: string;
-  }
+  id?: number;
+  name: string;
+  image: string;
+  banner: string;
+  team_id?: number;
+  description: string;
+  skills: (number | undefined)[];
+}
 
   export interface IGetChampionsResponse {
     message: string;
@@ -12,7 +14,7 @@ export interface IChampion {
   }
 
   export interface ISkills {
-    id: number;
+    id?: number;
     name: string;
     description: string;
     color: string;
@@ -21,6 +23,18 @@ export interface IChampion {
   export interface IGetSkillsResponse {
     message: string;
     skills: ISkills[];
+  }
+
+  export interface ITeams {
+    id?: number;
+    name: string;
+    description: string;
+    shield: string;
+  }
+
+  export interface IGetTeamsResponse {
+    message: string;
+    teams: ITeams[]
   }
 
   export interface IImgbbData {
