@@ -19,11 +19,11 @@ export const TextInput = styled.input <IStyledTextInput>`
     box-shadow: none;
     border-radius: 5px;
     border: 1px solid ${colors.primary[0.1]};
-    background: white;
+    background: ${colors.primary[1]};
     color: ${colors.primary[0]};
     font-weight: 500;
     font-size: 1rem;
-    padding: 0 8px;
+    padding: 0 0.5rem;
 
     &::placeholder {
         font-weight: 500;

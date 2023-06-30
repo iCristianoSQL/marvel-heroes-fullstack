@@ -15,7 +15,7 @@ export const Label = styled.label`
 `
 
 export const Text = styled.textarea<ITextAreaStyle>`
-    padding: 0px 8px;
+    padding: 0px 0.5rem;
     width: 95%;
     height: 75px;
 
@@ -26,7 +26,7 @@ export const Text = styled.textarea<ITextAreaStyle>`
         `
     }
 
-    background: white;
+    background: ${colors.primary[1]};
     outline: none;
     box-shadow: none;
     border-radius: 5px;
