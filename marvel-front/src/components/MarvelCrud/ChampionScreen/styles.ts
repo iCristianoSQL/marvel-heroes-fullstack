@@ -7,9 +7,6 @@ export const Container = styled.div`
   h1 {
     text-align: center;
   }
-  .register-champion-box {
-    display: flex;
-  }
 
   .champion-image {
     width: 13rem;
@@ -83,18 +80,36 @@ export const FileInput = styled.div`
 
 export const Form = styled.form`
   display: flex;
-  justify-content: center;
-  position: relative;
-
+  flex-direction: column;
   width: 100%;
-  gap: 1rem;
+  margin-top: 0.5rem;
+
+  .register-box {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
 
   .first-column-form {
       width: 30rem;
       height: 23rem;
 
+      input[type="number"] {
+        margin-top: 0.5rem;
+      }
+
       input {
         width: 100%;
+      }
+
+      span {
+        margin-top: 1rem;
+        display: block;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.1rem;
+        color: ${colors.danger[0]};
       }
   }
 
@@ -112,8 +127,16 @@ export const Form = styled.form`
   }
 
   button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    margin-top: 1rem;
+    align-self: end;
   }
+`;
+
+export const SkillsDiv = styled.div`
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+
+  border-top: 1px solid white;
 `;
