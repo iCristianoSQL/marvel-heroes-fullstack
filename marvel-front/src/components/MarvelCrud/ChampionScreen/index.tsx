@@ -5,7 +5,6 @@ import { useMutation } from "react-query";
 import { AiOutlineFileImage } from "react-icons/ai";
 
 import { uploadImage } from "../../../services/imgBB";
-import { api } from "../../../services/api";
 import { IChampion, ISkills } from "../../../utils/@types";
 import { schema } from "./schema";
 
@@ -17,7 +16,6 @@ import { Button, SkillList } from "../..";
 import SelectInput from "../../SelectInput";
 import { MarvelServices } from "../../../services/marvel";
 import { toast } from "react-toastify";
-import { AxiosError } from "axios";
 import { handleRequestError } from "../../../utils/requestErrors";
 
 type ChampionSchema = z.infer<typeof schema>;
@@ -25,7 +23,8 @@ type ChampionSchema = z.infer<typeof schema>;
 export const ChampionScreen = () => {
   const [championImage, setChampionImage] = useState<string | null>(null);
   const [bannerImage, setBannerImage] = useState<string | null>(null);
-  const [selectedSkill, setSelectedSkill] = useState<ISkills[]>([]);
+  const [selectedSkills, setSelectedSkills] = useState<ISkills[]>([]);
+
   const uploadImageMutation = useMutation(uploadImage);
   const createChampion = useMutation(MarvelServices.usePostChampion);
 
@@ -33,7 +32,7 @@ export const ChampionScreen = () => {
   const fileBannerImageRef = useRef<File | null>(null);
 
   const { data: teams } = MarvelServices.useGetTemas();
-  const teamsOptions = teams?.teams?.map(({ id, name }) => ({ value: id || undefined, label: name })) ?? [];
+  const teamsOptions = teams?.teams?.map(({ id, name }) => ({ value: id, label: name })) ?? [];
 
   const {
     register,
@@ -43,16 +42,16 @@ export const ChampionScreen = () => {
   } = useForm<ChampionSchema>();
 
   const championName = watch("name");
-  const team = watch("team");
+  const team = watch("team_id");
 
   const handleSkillSelect = (skill: ISkills) => {
-    if (!selectedSkill.find((selected) => selected.id === skill.id)) {
-      setSelectedSkill((prevSkills) => [...prevSkills, skill]);
+    if (!selectedSkills.find((selected) => selected.id === skill.id)) {
+      setSelectedSkills((prevSkills) => [...prevSkills, skill]);
     }
   };
 
   const handleSkillRemove = (skill: ISkills) => {
-    setSelectedSkill((prevSkills) =>
+    setSelectedSkills((prevSkills) =>
       prevSkills.filter((event) => event.id !== skill.id)
     );
   };
@@ -88,16 +87,15 @@ export const ChampionScreen = () => {
       const bannerImageResult = await uploadImageMutation.mutateAsync(fileBannerImageRef.current);
   
       if (!championImageResult?.data?.display_url || !bannerImageResult?.data?.display_url) {
-        console.log("Ainda não deu certo");
+        toast.error("Falaha ao enviar as imagens.");
         return;
       }
   
-      const skills = selectedSkill.map((skillId) => skillId.id);
+      const skills = selectedSkills.map((skillId) => skillId.id);
       const updatedData: IChampion = {
         ...data,
-        image: 'championImageResult.data.display_url',
-        banner: 'bannerImageResult.data.display_url',
-        team_id: team,
+        image: championImageResult.data.display_url,
+        banner: bannerImageResult.data.display_url,
         skills,
       };
   
@@ -145,9 +143,9 @@ export const ChampionScreen = () => {
             )}
 
             <SelectInput
-              register={register("team")}
+              register={register("team_id")}
               options={[
-                { value: undefined, label: "Selecione uma Equipe" },
+                { value: 0, label: "Selecione uma Equipe" },
                 ...teamsOptions
               ]}
               width="100%"
@@ -187,7 +185,7 @@ export const ChampionScreen = () => {
           </div>
         </div>
         <S.SkillsDiv>
-          {selectedSkill.map((skill: ISkills) => {
+          {selectedSkills.map((skill: ISkills) => {
             return (
               <SkillTag
                 description={skill.description}

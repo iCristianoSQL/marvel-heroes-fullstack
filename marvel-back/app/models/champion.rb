@@ -6,10 +6,16 @@ class Champion < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { message: "O campeão %{value} já existe" }, length: { maximum: 20 }
   validates :description, presence: { message: "A descrição não pode ficar em branco" }, length: { maximum: 2000, message: "A descrição deve ter no máximo %{count} caracteres" }
+ 
+  before_save :replace_team_id_zero_with_null
 
   after_commit :attach_skills, on: :create, if: :saved_from_controller?
 
   private
+
+  def replace_team_id_zero_with_null
+    self.team_id = nil if team_id == 0
+  end
 
   def attach_skills
     skills_ids.each do |skill_id|

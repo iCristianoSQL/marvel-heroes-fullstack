@@ -11,7 +11,7 @@ export const schema = z.object({
     .min(1, "A descrição é obrigatória.")
     .max(2000, "A descrição deve ter até 2000 caracteres.")
     .nonempty(),
-  team: z.number().optional(),
+  team_id: z.number().optional(),
   image: z.string().optional(),
   banner: z.string().optional(),
   skills: z.array(z.number()).optional(),

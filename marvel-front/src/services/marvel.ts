@@ -3,6 +3,7 @@ import { IChampion, IGetChampionsResponse, IGetSkillsResponse, IGetTeamsResponse
 import { api } from "./api";
 import { useQuery, UseQueryResult } from "react-query";
 import { handleRequestError } from "../utils/requestErrors";
+import { toast } from "react-toastify";
 
 export const MarvelServices = {
   useGetChampions: (): UseQueryResult<IGetChampionsResponse> => {
@@ -16,6 +17,7 @@ export const MarvelServices = {
   usePostChampion: async (champion: IChampion): Promise<IChampion> => {
     try {
       const response: AxiosResponse<IChampion> = await api.post<IChampion>("champions", champion);
+      toast.success("Campeão cadastrado com sucesso!");
       return response.data;
     } catch (error) {
       handleRequestError(error);
