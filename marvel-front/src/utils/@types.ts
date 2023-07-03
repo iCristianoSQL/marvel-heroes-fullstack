@@ -17,6 +17,16 @@ export interface IChampion {
   };
 }
 
+export interface IChampionScreen {
+  id?: number;
+  name: string;
+  image: string;
+  banner: string;
+  team_id?: number;
+  description: string;
+  skills: (number | undefined)[];
+}
+
   export interface IGetChampionsResponse {
     message: string;
     champions: IChampion[];

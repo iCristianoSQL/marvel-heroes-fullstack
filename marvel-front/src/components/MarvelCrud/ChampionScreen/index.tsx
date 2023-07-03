@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import { uploadImage } from "../../../services/imgBB";
 import { MarvelServices } from "../../../services/marvel";
-import { IChampion, ISkills } from "../../../utils/@types";
+import { IChampion, IChampionScreen, ISkills } from "../../../utils/@types";
 import { handleRequestError } from "../../../utils/requestErrors";
 import { schema } from "./schema";
 
@@ -94,7 +94,7 @@ export const ChampionScreen = () => {
       }
 
       const skills = selectedSkills.map((skillId) => skillId.id);
-      const updatedData: IChampion = {
+      const updatedData: IChampionScreen = {
         ...data,
         image: championImageResult.data.display_url,
         banner: bannerImageResult.data.image.url,
