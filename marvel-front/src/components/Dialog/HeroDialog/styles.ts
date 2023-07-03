@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { IHeroDialog } from "./types";
+import { IChampionDialog } from "./types";
 import { colors } from "../../../utils/colors";
 
 export const Container = styled.div`
@@ -23,20 +23,34 @@ export const Container = styled.div`
         }
     }
 
-    .description-box {
-        margin-top: 0.5rem;
-        strong {
+    .description-box, .team-box {
+        h2 {
             font-size: 1.4rem;
-            border-bottom: 1px solid ${colors.primary[1]};
+            width: fit-content;
         }
         p {
             margin-top: 0.5rem;
             font-size: 1rem;
         }
+        strong {
+            font-size: 1.2rem;
+        }
+    }
+
+    .skills-box {
+        margin-top: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        h2 {
+            width: 100%;
+            font-size: 1.4rem;
+        }
     }
 `;
 
-export const Image = styled.div<IHeroDialog>`
+export const Image = styled.div<IChampionDialog>`
   width: 100%;
   min-height: 20rem;
   position: relative;
