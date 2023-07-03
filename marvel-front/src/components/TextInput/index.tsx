@@ -8,12 +8,14 @@ export const TextInput = ({
   placeholder,
   type,
   label,
+  handleChange,
   register,
 }: IStyledTextInput) => {
   return (
     <S.Label>
       {label}
       <S.TextInput
+        onChange={handleChange}
         type={type}
         height={height}
         width={width}
