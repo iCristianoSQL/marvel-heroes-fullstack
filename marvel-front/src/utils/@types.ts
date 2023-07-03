@@ -3,9 +3,18 @@ export interface IChampion {
   name: string;
   image: string;
   banner: string;
-  team_id?: number;
+  team_info: {
+    id: number;
+    name: string;
+    description: string;
+  };
   description: string;
-  skills: (number | undefined)[];
+  skills: {
+    id?: number;
+    name: string;
+    description: string;
+    color: string;
+  };
 }
 
   export interface IGetChampionsResponse {
