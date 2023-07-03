@@ -1,5 +1,5 @@
-import { IHero } from "../../../utils/@types";
+import { IChampion } from "../../../utils/@types";
 
-export interface IHeroDialog {
-    hero: IHero;
+export interface IChampionDialog {
+    hero: IChampion;
 }
