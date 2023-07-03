@@ -75,7 +75,7 @@ export const FileImageInput = ({
   return (
     <S.FIleImageInput>
       <input type="file" id={id} onChange={handleFileChange} />
-      <label htmlFor={id} className="custom-file-upload">
+      <label htmlFor={id}>
         <div className={className}>
           {image && (
             <>
