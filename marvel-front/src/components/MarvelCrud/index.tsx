@@ -28,8 +28,8 @@ export const MarvelCrud = () => {
       <S.Container>
         <nav>
           <Button handleClick={() => renderScreen("Champion")}>Campeão</Button>
-          <Button handleClick={() => renderScreen("Skill")}>Habilidade</Button>
-          <Button handleClick={() => renderScreen("Team")}>Equipe</Button>
+          {/* <Button handleClick={() => renderScreen("Skill")}>Habilidade</Button>
+          <Button handleClick={() => renderScreen("Team")}>Equipe</Button> */}
         </nav>
         {screenComponents[activeScreen]}
       </S.Container>
