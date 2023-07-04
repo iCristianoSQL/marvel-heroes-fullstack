@@ -69,29 +69,38 @@ export const Form = styled.form`
     display: flex;
     justify-content: center;
     gap: 1rem;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
-
   .first-column-form {
-      width: 30rem;
-      height: 23rem;
+    width: 30rem;
+    height: 23rem;
 
-      select {
-        margin-top: 0.5rem;
-      }
+    select {
+      margin-top: 0.5rem;
+    }
 
-      input {
-        width: 100%;
-      }
+    input {
+      width: 100%;
+    }
 
-      .skill-title {
-        margin-top: 1rem;
-        display: block;
-        font-weight: 600;
-        font-size: 1rem;
-        line-height: 1.1rem;
-        color: ${colors.danger[0]};
-      }
+    .skill-title {
+      margin-top: 1rem;
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.1rem;
+      color: ${colors.danger[0]};
+    }
+
+    @media (max-width: 900px) {
+      width: 100%;
+      min-width: 20rem;
+    }
   }
 
   .second-column-form {
@@ -104,6 +113,23 @@ export const Form = styled.form`
     textarea {
       height: 8rem;
       width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      position: relative;
+      
+      textarea {
+        margin-bottom: 13rem;
+      }
+
+      .banner-image {
+        width: 22.985rem;
+        margin: auto;
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
 
@@ -132,6 +158,14 @@ export const SkillsDiv = styled.div`
       color: ${colors.primary[1]} !important;
       font-size: 1.2rem;
     }
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      
+      button {
+        width: 100%;
+      }
+    }
   }
 
   .empty-box {
@@ -143,7 +177,6 @@ export const SkillsDiv = styled.div`
     img {
       margin-top: 2rem;
       width: 12rem;
-
     }
 
     strong {

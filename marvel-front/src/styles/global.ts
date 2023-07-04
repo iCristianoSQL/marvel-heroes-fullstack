@@ -136,6 +136,12 @@ export const GlobalStyle: React.NamedExoticComponent<ExecutionProps & TemplateSt
         }
     }
 
+    @media (max-width: 696px) {
+        .sandbox__carousel {
+            display: none;
+        }
+    }
+
     @media (min-width: 750px) {
         .sandbox__carousel {
             border-radius: 0.4rem;

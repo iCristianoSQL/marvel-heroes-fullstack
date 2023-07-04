@@ -26,7 +26,7 @@ export const ListOfHeroes = () => {
   const filteredHeroes = heroes.filter((hero) =>
     hero.name.toLowerCase().includes(searchValue.toLowerCase())
   );
-  
+
   return (
     <PageSection id="heroes">
       <S.Container>
@@ -36,6 +36,7 @@ export const ListOfHeroes = () => {
           placeholder="Buscar herói"
           value={searchValue}
           handleChange={handleSearchChange}
+          className="search-hero-input"
         />
         {filteredHeroes.length > 0 ? (
           <>

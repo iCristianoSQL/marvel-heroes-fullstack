@@ -5,5 +5,6 @@ export interface IStyledTextInput extends InputHTMLAttributes<HTMLInputElement> 
     width?: string;
     label?: string;
     register?: any;
+    className?: string;
     handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

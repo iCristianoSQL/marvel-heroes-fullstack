@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import { uploadImage } from "../../../services/imgBB";
 import { MarvelServices } from "../../../services/marvel";
-import { IChampion, IChampionScreen, ISkills } from "../../../utils/@types";
+import { IChampionScreen, ISkills } from "../../../utils/@types";
 import { handleRequestError } from "../../../utils/requestErrors";
 import { schema } from "./schema";
 

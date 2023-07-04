@@ -20,6 +20,10 @@ export const Container = styled.div`
                 color: ${colors.primary[1]} !important;
                 font-size: 3.5rem;
             }
+
+            @media (max-width: 568px) {
+                position: initial;
+            }
         }
     }
 
@@ -65,5 +69,8 @@ export const Image = styled.div<IChampionDialog>`
       hero && hero.banner ? `url(${hero.banner})` : ""};
     background-size: cover;
     background-position: center;
+  }
+  @media (max-width: 568px) {
+    display: none;
   }
 `;

@@ -27,4 +27,25 @@ export const Container = styled.div`
             margin-top: 1rem;
         }
     }
+
+    @media (max-width: 696px) {
+        flex-direction: column;
+        align-items: center;
+
+        .box-hero-info {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            h1 {
+                text-align: center;
+            }
+
+            p {
+                display: none;
+            }
+        }
+     }
 `;
