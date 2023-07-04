@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { colors } from '../../utils/colors';
 
 export const Footer = styled.footer`
-    width: 100%;
     height: 5rem;
     padding: 0 2rem;
     border-top: 1px solid ${colors.primary[1]};

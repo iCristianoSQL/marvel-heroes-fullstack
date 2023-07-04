@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { IChampion, IGetChampionsResponse, IGetSkillsResponse, IGetTeamsResponse } from "../utils/@types";
+import { IChampionScreen, IGetChampionsResponse, IGetSkillsResponse, IGetTeamsResponse } from "../utils/@types";
 import { api } from "./api";
 import { useQuery, UseQueryResult } from "react-query";
 import { handleRequestError } from "../utils/requestErrors";
@@ -14,9 +14,9 @@ export const MarvelServices = {
     });
   },
 
-  usePostChampion: async (champion: IChampion): Promise<IChampion> => {
+  usePostChampion: async (champion: IChampionScreen): Promise<IChampionScreen> => {
     try {
-      const response: AxiosResponse<IChampion> = await api.post<IChampion>("champions", champion);
+      const response: AxiosResponse<IChampionScreen> = await api.post<IChampionScreen>("champions", champion);
       toast.success("Campeão cadastrado com sucesso!");
       return response.data;
     } catch (error) {

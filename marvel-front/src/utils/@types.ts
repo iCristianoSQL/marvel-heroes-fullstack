@@ -3,6 +3,25 @@ export interface IChampion {
   name: string;
   image: string;
   banner: string;
+  team_info: {
+    id: number;
+    name: string;
+    description: string;
+  };
+  description: string;
+  skills: {
+    id?: number;
+    name: string;
+    description: string;
+    color: string;
+  };
+}
+
+export interface IChampionScreen {
+  id?: number;
+  name: string;
+  image: string;
+  banner: string;
   team_id?: number;
   description: string;
   skills: (number | undefined)[];

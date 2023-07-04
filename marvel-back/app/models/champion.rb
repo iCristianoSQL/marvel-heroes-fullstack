@@ -11,6 +11,14 @@ class Champion < ApplicationRecord
 
   after_commit :attach_skills, on: :create, if: :saved_from_controller?
 
+  def team_info
+    { id: team_id, name: team&.name, description: team&.description }
+  end
+
+  def as_json(options = {})
+    super(options).merge(team_info: team_info).except('team_id')
+  end
+
   private
 
   def replace_team_id_zero_with_null
