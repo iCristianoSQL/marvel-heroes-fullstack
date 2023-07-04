@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-toastify";
 
-export function ToastAlert({ ...rest }) {
+export function ToastAlert() {
     return (
         <ToastContainer
         position="top-right"

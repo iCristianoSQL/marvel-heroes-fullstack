@@ -1,4 +1,3 @@
-import { RegisterOptions } from "react-hook-form";
 import * as S from "./styles";
 import { IStyledTextInput } from "./types";
 
